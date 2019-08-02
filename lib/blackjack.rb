@@ -23,17 +23,27 @@ def end_game(card_total)
 end
 
 def initial_round
-  puts deal_card + deal_card
-  display_card_total
+  card_one = deal_card
+  card_two = deal_card
+  card_total = card_one + card_two
+  display_card_total(card_total)
+  return card_total
 end
 
-def hit?
+def hit?(card_total)
   prompt_user
-  get_user_input
+  user_input = get_user_input
+  if user_input == "h"
+    card_total += deal_card #increase your former total by the new number given by dealing another card
+  elsif user_input == "s"
+    card_total #return the number and prompt user to hit again
+  else
+    invalid_command
+  end
 end
 
 def invalid_command
-  # code invalid_command here
+  puts 'Please enter a valid command'
 end
 
 #####################################################
